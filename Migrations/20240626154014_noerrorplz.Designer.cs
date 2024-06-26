@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Reddit;
 
@@ -10,9 +11,11 @@ using Reddit;
 namespace Reddit.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplcationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240626154014_noerrorplz")]
+    partial class noerrorplz
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,8 +29,8 @@ namespace Reddit.Migrations
                     b.Property<int>("SubscribedCommunitiesId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("SubscribersId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SubscribersId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("SubscribedCommunitiesId", "SubscribersId");
 
@@ -69,8 +72,8 @@ namespace Reddit.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("OwnerId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -85,8 +88,8 @@ namespace Reddit.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("AuthorId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("CommunityId")
                         .HasColumnType("INTEGER");
@@ -122,9 +125,8 @@ namespace Reddit.Migrations
 
             modelBuilder.Entity("Reddit.Models.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("INTEGER");

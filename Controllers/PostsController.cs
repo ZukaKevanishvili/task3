@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Reddit;
 using Reddit.Dtos;
@@ -43,6 +44,7 @@ namespace Reddit.Controllers
 
         // PUT: api/Posts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPost(int id, Post post)
         {
@@ -74,6 +76,7 @@ namespace Reddit.Controllers
 
         // POST: api/Posts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<Post>> PostPost(CreatePostDto createPostDto)
         {
@@ -86,6 +89,7 @@ namespace Reddit.Controllers
         }
 
         // DELETE: api/Posts/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePost(int id)
         {

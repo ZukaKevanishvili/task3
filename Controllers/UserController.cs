@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Reddit.Dtos;
 using Reddit.Mapper;
@@ -22,7 +23,7 @@ namespace Reddit.Controllers
         {
             var author = new User
             {
-                Name = createAuthorDto.Name
+                UserName = createAuthorDto.Name
             };
 
             await _context.Users.AddAsync(author);
@@ -36,6 +37,7 @@ namespace Reddit.Controllers
         {
             return await _context.Users.ToListAsync();
         }
+
         [HttpPost("JoinCommunity")]
         public async Task<IActionResult> JoinCommunity(int userId,int communityId)
         {
